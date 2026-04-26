@@ -8,15 +8,13 @@
 
 Az **Urmisszio** egy 2D top-down kalandjáték, amelynek helyszíne egy elhagyatott űrállomás. Egy asztronautát irányítasz szobáról szobára — tárgyakat gyűjtesz, kombinálsz, ajtókat nyitsz ki, és megpróbálsz életben maradni.
 
-Ha elegánsan unat a túlélés, ugorj át az **ARCADE módba** a főmenüből — és lőj le mindent ami mozog.
-
 ---
 
 ## ✨ Főbb funkciók
 
-- 🗺️ **Tile-alapú szobárendszer** animált mozgással és mélységrendezéssel
+- 🗺️ **Tile-alapú szobarendszer** animált mozgással és mélységrendezéssel
 - 🧪 **Tárgy- és receptrendszer** — kombinálj tárgyakat újak létrehozásához
-- 👾 **Arcade shooter minijáték** — 4 ellenségtípus, hullámrendszer, pontszám
+- 👾 **Arcade shooter minijáték** — 4 ellenségtípus, pontszám
 - 🎨 **CRT / glitch effektek** a főmenüben
 - 🔊 **Többcsatornás hangrendszer** dedikált csatornákkal
 - 🌌 **Parallax háttér** — ugyanaz a stílus a menüben és a játékban
