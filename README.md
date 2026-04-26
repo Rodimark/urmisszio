@@ -1,6 +1,6 @@
 # 🚀 URMISSZIO
 
-> *Pygame alapú top-down űrkaland beépített arcade shoot'em up minijátékkal*
+> *Pygame alapú felünézetes sci-fi túlélőjáték beépített arcade shoot'em up minijátékkal*
 
 ---
 
@@ -24,7 +24,7 @@ Ha elegánsan unat a túlélés, ugorj át az **ARCADE módba** a főmenüből �
 
 ---
 
-## 🕹️ Vezérlők
+## 🕹️ Irányitás
 
 | Billentyű | Funkció |
 |-----------|---------|
@@ -36,7 +36,7 @@ Ha elegánsan unat a túlélés, ugorj át az **ARCADE módba** a főmenüből �
 | `U` | Tárgy használata |
 | `ESC` | Kilépés |
 
-**Shooter módban:** `WASD` mozgás, `SPACE` lövés, `ESC` vissza a menübe.
+**Arcade módban:** `WASD` mozgás, `SPACE` lövés, `ESC` vissza a menübe.
 
 ---
 
