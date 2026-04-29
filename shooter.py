@@ -23,18 +23,18 @@ ENEMY_SCALE  = 1
 # Gameplay tuning
 PLAYER_SPEED      = 5        # px per frame at 60fps
 BULLET_SPEED_PX   = 800      # px / sec, upward
-EBULLET_SPEED_PX  = 520      # px / sec, downward (scales up with wave)
-SHOOT_COOLDOWN_MS = 180
-PLAYER_LIVES      = 3
-INVINCIBLE_MS     = 1500
+EBULLET_SPEED_PX  = 360      # px / sec, downward (lassabb ellenséges lövedék)
+SHOOT_COOLDOWN_MS = 120      # gyorsabb játékos lövés
+PLAYER_LIVES      = 5        # több élet
+INVINCIBLE_MS     = 2200     # hosszabb sebzés utáni védetlenség
 
 # Background scroll speeds (px/frame at 60fps) — same structure as main menu
 BG_BASE_SPEEDS = [1.5, 3.5]   # faster than menu (0.5, 1.2) for shooter feel
 BG_ACCEL_RATE  = 0.00004      # fraction of base speed added per ms elapsed
 
 # Enemy spawning
-SPAWN_BASE_MS = 1800
-SPAWN_MIN_MS  = 500
+SPAWN_BASE_MS = 2600         # ritkább spawn
+SPAWN_MIN_MS  = 800          # maximum sűrűség is lazább
 
 
 # ── Image cache ───────────────────────────────────────────────────────────────
@@ -224,22 +224,22 @@ _ETYPES = {
     "bug":    {
         "folder": os.path.join(_SS, "enemyships", "01 Bug (Animation)", "Bug 1"),
         "prefix": "bug_1_", "count": 6,
-        "hp": 1, "score": 10, "spd": 90,
+        "hp": 1, "score": 10, "spd": 68,
     },
     "danger": {
         "folder": os.path.join(_SS, "enemyships", "03 Danger"),
         "prefix": "danger_", "count": 6,
-        "hp": 2, "score": 20, "spd": 130,
+        "hp": 2, "score": 20, "spd": 95,
     },
     "heavy": {
         "folder": os.path.join(_SS, "enemyships", "02 Heavy"),
         "prefix": "heavy_", "count": 6,
-        "hp": 3, "score": 35, "spd": 70,
+        "hp": 3, "score": 35, "spd": 52,
     },
     "wings": {
         "folder": os.path.join(_SS, "enemyships", "06 Wings"),
         "prefix": "wings_", "count": 6,
-        "hp": 2, "score": 25, "spd": 110,
+        "hp": 2, "score": 25, "spd": 82,
     },
 }
 
@@ -427,7 +427,7 @@ def run(screen, clock):
                     ["bug", "danger", "heavy", "wings"],
                     weights=[40, 25, 15, 20])[0]
                 x        = random.randint(70, SCREEN_W - 70)
-                shoot_ch = 0.004 + wave * 0.001
+                shoot_ch = 0.002 + wave * 0.0005
                 enemies.append(Enemy(etype, x, eframes[etype],
                                      ebullet_img, spd_mult, shoot_ch))
 
