@@ -38,6 +38,24 @@ Az **Urmisszio** egy 2D top-down kalandjáték, amelynek helyszíne egy elhagyat
 
 ---
 
+## 🧪 Crafting receptek
+
+A tárgyakat az `U` billentyűvel lehet kombinálni — tartsd kézben az egyiket, és állj rá a másikra.
+
+| Alapanyag 1 | + | Alapanyag 2 | = | Eredmény |
+|---|---|---|---|---|
+| Kuka | + | Csap | = | Vizes kuka |
+| Tompa olló | + | Nagy kő | = | Éles olló |
+| Érmé | + | Automata | = | Rágógumi |
+| GPS modul | + | Pozicionáló interfész | = | Pozicionáló számítógép |
+| Szivárgó légpalack | + | Rágógumi | = | Tömített légpalack |
+| Éles olló | + | Jójó | = | Spárga |
+| Spárga | + | Kaktusz tű | = | Tűzött tű |
+| Poodle lander | + | Kalapács | = | Kommunikációs rádió |
+| Száraz ételcsomag | + | Csap | = | Kész étel |
+
+---
+
 ## ⚙️ Telepítés
 
 **Követelmények:** Python 3.10+, Pygame 2.x
