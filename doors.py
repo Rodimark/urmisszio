@@ -37,6 +37,20 @@ _engineering_timer    = 0
 _engineering_counting = False
 
 
+# ── Reset (called at start of each new game session) ─────────────────────────
+
+def reset_doors():
+    """Clear all door / airlock / engineering-timer state for a fresh run."""
+    global _anim, airlock_door_frame, _airlock_active, _airlock_timer
+    global _engineering_timer, _engineering_counting
+    _anim                 = None
+    airlock_door_frame    = 0
+    _airlock_active       = False
+    _airlock_timer        = 0
+    _engineering_timer    = 0
+    _engineering_counting = False
+
+
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def open_door(door_number):

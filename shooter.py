@@ -8,6 +8,7 @@ import random
 import os
 
 from mainmenu import apply_crt, load_bg, make_props, draw_background
+import hud as _hud
 
 SCREEN_W  = 1280
 SCREEN_H  = 720
@@ -393,7 +394,7 @@ def run(screen, clock):
                 if event.key == pygame.K_ESCAPE:
                     pygame.mixer.music.stop(); ch_engine.stop()
                     return "menu"
-                if game_over and go_timer > 1000:
+                if game_over and go_timer > 1500:
                     pygame.mixer.music.stop(); ch_engine.stop()
                     return "menu"
 
@@ -497,19 +498,9 @@ def run(screen, clock):
 
         _draw_hud(screen, font, score, player.lives, wave, hud_ship)
 
-        if game_over:
-            ov = pygame.Surface((SCREEN_W, SCREEN_H), pygame.SRCALPHA)
-            ov.fill((0, 0, 0, 160))
-            screen.blit(ov, (0, 0))
-            cx = SCREEN_W // 2
-            if go_timer > 400:
-                go_s = font_big.render("GAME OVER", True, (200, 220, 255))
-                screen.blit(go_s, (cx - go_s.get_width() // 2, SCREEN_H // 2 - 110))
-                sc_s = font.render(f"SCORE   {score:07d}", True, (100, 200, 255))
-                screen.blit(sc_s, (cx - sc_s.get_width() // 2, SCREEN_H // 2 + 10))
-            if go_timer > 1400:
-                es = font.render("PRESS ANY KEY TO RETURN", True, (200, 220, 255))
-                screen.blit(es, (cx - es.get_width() // 2, SCREEN_H // 2 + 90))
+        if game_over and go_timer > 600:
+            # Full-screen game over — same style as the main game
+            _hud.draw_game_over_arcade(screen, score)
 
         apply_crt(screen)
         pygame.display.flip()

@@ -140,10 +140,11 @@ def draw_panel(surface, x, y, w, h, scale=UI_SCALE):
 # With UI_SCALE=4: top/bottom border of each panel = 4*4 = 16px.
 # Top panel interior: y=16 to y=144  (fits 128px of content)
 
+_PAD_X   = 68    # inner left padding — clears the 60px 9-slice left border + 8px gap
 TEXT_Y0  = 22    # room name / primary message  (inside top border)
-TEXT_Y1  = 52    # secondary message
-ICONS_Y  = 84    # inventory icon row  (icon height ≈ TILE_SIZE = 30px → bottom at 114)
-DESC_Y   = 122   # selected-item description    (fits inside interior at ≤ 144)
+TEXT_Y1  = 48    # secondary message
+ICONS_Y  = 78    # inventory icon row  (icon height ≈ 30px → bottom at 108)
+DESC_Y   = 116   # selected-item description    (bottom at ~138, within interior ≤ 144)
 
 # Bottom panel: y = SCREEN_H - HUD_BOT_H = 632
 # Bar images are scaled to _BAR_H tall, centred vertically in the panel.
@@ -227,12 +228,12 @@ def show_text(surface, text_to_show, line_number):
     Panel background handles clearing — no black rect needed.
     """
     y = TEXT_Y1 if line_number else TEXT_Y0
-    surface.blit(_font.render(text_to_show, True, TEXT), (20, y))
+    surface.blit(_font.render(text_to_show, True, TEXT), (_PAD_X, y))
 
 
 def draw_room_name(surface, room_name):
     """Always drawn; may be covered by show_text(surface, msg, 0)."""
-    surface.blit(_font.render(room_name, True, TEXT), (20, TEXT_Y0))
+    surface.blit(_font.render(room_name, True, TEXT), (_PAD_X, TEXT_Y0))
 
 
 # ── Inventory display ─────────────────────────────────────────────────────────
@@ -252,14 +253,14 @@ def display_inventory(surface, in_my_pockets, selected_item, objects, img_fn):
 
     for i, item_id in enumerate(to_show):
         icon = img_fn(objects[item_id][0])
-        surface.blit(icon, (25 + 46 * i, ICONS_Y))
+        surface.blit(icon, (_PAD_X + 46 * i, ICONS_Y))
 
     # White selection rectangle around current item
-    box_left = sel_idx * 46 - 3
-    pygame.draw.rect(surface, WHITE, (22 + box_left, ICONS_Y - 5, 40, 40), 1)
+    box_left = sel_idx * 46
+    pygame.draw.rect(surface, WHITE, (_PAD_X - 3 + box_left, ICONS_Y - 3, 40, 36), 1)
 
     desc = objects[in_my_pockets[selected_item]][2]
-    surface.blit(_font.render(desc, True, TEXT), (20, DESC_Y))
+    surface.blit(_font.render(desc, True, TEXT), (_PAD_X, DESC_Y))
 
 
 # ── Air + energy bars (image-based, clipped to current value) ─────────────────
@@ -348,9 +349,9 @@ def draw_game_over(surface, reason):
     """Full-screen game over screen — big centred text."""
     surface.fill((0, 0, 0))
 
-    go_surf  = _font_go.render("GAME OVER",        True, TEXT)
-    re_surf  = _font_mid.render(reason,             True, RED )
-    esc_surf = _font_mid.render("PRESS ESC TO QUIT", True, TEXT)
+    go_surf  = _font_go.render("GAME OVER",              True, TEXT)
+    re_surf  = _font_mid.render(reason,                  True, RED )
+    esc_surf = _font_mid.render("PRESS ANY KEY TO RETURN", True, TEXT)
 
     # Stack vertically, centred as a block
     gap      = 30
@@ -363,6 +364,30 @@ def draw_game_over(surface, reason):
     y += go_surf.get_height() + gap
     surface.blit(re_surf,  (cx(re_surf),  y))
     y += re_surf.get_height() + gap
+    surface.blit(esc_surf, (cx(esc_surf), y))
+
+
+def draw_game_over_arcade(surface, score):
+    """
+    Full-screen game over for the arcade shooter — same style as main game
+    but shows the final score instead of a failure reason.
+    """
+    surface.fill((0, 0, 0))
+
+    go_surf  = _font_go.render("GAME OVER",               True, TEXT)
+    sc_surf  = _font_mid.render(f"SCORE  {score:07d}",    True, CYAN)
+    esc_surf = _font_mid.render("PRESS ANY KEY TO RETURN", True, TEXT)
+
+    gap     = 30
+    total_h = go_surf.get_height() + gap + sc_surf.get_height() + gap + esc_surf.get_height()
+    y       = (SCREEN_H - total_h) // 2
+
+    def cx(s): return SCREEN_W // 2 - s.get_width() // 2
+
+    surface.blit(go_surf,  (cx(go_surf),  y))
+    y += go_surf.get_height() + gap
+    surface.blit(sc_surf,  (cx(sc_surf),  y))
+    y += sc_surf.get_height() + gap
     surface.blit(esc_surf, (cx(esc_surf), y))
 
 

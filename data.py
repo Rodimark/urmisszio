@@ -253,9 +253,13 @@ PROPS = {
     68: [0,  0, 0],  69: [30, 3, 3],  70: [47, 1, 3],
     71: [0,  LANDER_Y, LANDER_X],
     72: [0,  0, 0],  73: [27, 4, 6],  74: [28, 1, 11], 75: [0,  0, 0],
-    76: [41, 3, 5],  77: [0,  0, 0],  78: [35, 9, 11], 79: [26, 3, 2],
-    80: [41, 7, 5],  81: [29, 1, 1],
+    76: [41, 3, 5],  77: [0,  0, 0],  78: [35, 9, 11], 79: [31, 3, 5],
+    80: [41, 9, 3],  81: [29, 1, 1],   # Bob's card on a clear floor tile in sick bay
 }
+
+# ── Default PROPS snapshot — used to reset world state on replay ──────────────
+import copy as _copy
+PROPS_DEFAULT = _copy.deepcopy(PROPS)
 
 # ── Recipes ───────────────────────────────────────────────────────────────────
 # [ingredient1, ingredient2, result]

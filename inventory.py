@@ -19,6 +19,16 @@ in_my_pockets = [55]   # start with yoyo (object 55)
 selected_item  = 0
 item_carrying  = 55    # mirrors in_my_pockets[selected_item]
 
+# ── Reset (called at start of each new game session) ─────────────────────────
+
+def reset_inventory():
+    """Restore inventory to its initial state (yoyo only)."""
+    global in_my_pockets, selected_item, item_carrying
+    in_my_pockets = [55]
+    selected_item = 0
+    item_carrying = 55
+
+
 # ── Position helpers ──────────────────────────────────────────────────────────
 
 def find_object_start_x(player_y, player_x):
